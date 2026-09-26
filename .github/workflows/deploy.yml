@@ -49,13 +49,26 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B main
 
+      # The release commit merges the push into the previous release, so the
+      # graph shows each version's commits as a branch of their own. The push
+      # is its second parent: pulling it is still a fast-forward.
       - name: Bump version from conventional commits
         id: release
         run: |
           LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
           RANGE=${LAST_TAG:+$LAST_TAG..HEAD}
           if git log $RANGE --format='%s%n%b' | grep -qE '^(feat|fix|perf)(\(.+\))?!?:|^[a-z]+(\(.+\))?!:|BREAKING CHANGE'; then
-            bunx changelogen --release
+            PUSHED=$(git rev-parse HEAD)
+            bunx changelogen --release --no-commit --no-tag
+            VERSION=$(jq -r .version package.json)
+            git add package.json CHANGELOG.md
+            if [ -n "$LAST_TAG" ]; then
+              RELEASE=$(git commit-tree "$(git write-tree)" -p "$LAST_TAG^{commit}" -p "$PUSHED" -m "chore(release): v$VERSION")
+              git reset --hard "$RELEASE"
+            else
+              git commit -m "chore(release): v$VERSION"
+            fi
+            git tag -am "v$VERSION" "v$VERSION"
             echo "released=true" >> "$GITHUB_OUTPUT"
           else
             echo "No releasable commits since ${LAST_TAG:-start}; skipping bump."
