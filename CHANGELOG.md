@@ -1,6 +1,29 @@
 # Changelog
 
 
+## v2.1.0
+
+[compare changes](https://github.com/soyluisarrieta/laravel-starter-kit/compare/v2.0.0...v2.1.0)
+
+### 🚀 Enhancements
+
+- **deploy:** Release and deploy every push to main on Hostinger ([7b6c80d](https://github.com/soyluisarrieta/laravel-starter-kit/commit/7b6c80d))
+
+### 📖 Documentation
+
+- Add new tasks to pending list ([761dd54](https://github.com/soyluisarrieta/laravel-starter-kit/commit/761dd54))
+- Add new tasks to pending list again ([d2281f1](https://github.com/soyluisarrieta/laravel-starter-kit/commit/d2281f1))
+- **release:** Explain that every push to main is a release ([d789267](https://github.com/soyluisarrieta/laravel-starter-kit/commit/d789267))
+
+### 🤖 CI
+
+- **deploy:** Merge each push into its release so the graph groups it ([37be00c](https://github.com/soyluisarrieta/laravel-starter-kit/commit/37be00c))
+
+### ❤️ Contributors
+
+- Luis Arrieta <luisarrieta796@gmail.com>
+- Luis Arrieta Avilez ([@soyluisarrieta](https://github.com/soyluisarrieta))
+
 ## v2.0.0
 
 [compare changes](https://github.com/soyluisarrieta/laravel-starter-kit/compare/v1.1.0...v2.0.0)

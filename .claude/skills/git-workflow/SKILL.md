@@ -57,16 +57,15 @@ BREAKING CHANGE: removed /api/v1/login endpoint
 
 ## Release Process
 
-```bash
-# Analyze commits → bump version → update CHANGELOG.md → create git tag → push
-bun run release
-```
+There is no release command: every push to `main` is a release, cut by GitHub Actions (`.github/workflows/deploy.yml`).
 
-What `bun run release` does internally:
-1. `bunx changelogen --release` — reads commits since last tag, determines next version, updates `package.json` and `CHANGELOG.md`, creates tag `vX.Y.Z`
-2. `git push --follow-tags` — pushes commit + tag to remote
+1. If the push has `feat`, `fix`, `perf` or a breaking change since the last tag, `changelogen` bumps `package.json` and `CHANGELOG.md`.
+2. The bot commits `chore(release): vX.Y.Z` as a merge of the push into the previous release, so the graph shows each version as its own branch. It tags it and pushes to `main`.
+3. The build goes to the `production` branch, which the server pulls on its own.
 
-> Run this only from `main` with a clean working tree.
+> Run `git pull` after each release, before the next commit. Never push a `chore(release)` commit by hand: the workflow skips those, so nothing would deploy.
+
+While the version is `0.x`, changelogen bumps one step lower: `feat` → patch, breaking → minor.
 
 ## Commitlint (enforced via Husky)
 

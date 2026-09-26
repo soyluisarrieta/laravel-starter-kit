@@ -1,0 +1,99 @@
+name: deploy
+
+# Hostinger blocks GitHub's runners, so this never reaches the server: it
+# versions the release, builds the assets and publishes them on the
+# `production` branch, which the server pulls on its own (`deploy:pull`, from
+# the scheduler). See docs/deployment.md.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ !startsWith(github.event.head_commit.message, 'chore(release)') }}
+    env:
+      # No git hooks on the runner: its commits are the release and the build.
+      HUSKY: 0
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+
+      # Wayfinder asks Laravel for the routes while Vite builds.
+      - name: Install PHP dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install JS dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B main
+
+      # The release commit merges the push into the previous release, so the
+      # graph shows each version's commits as a branch of their own. The push
+      # is its second parent: pulling it is still a fast-forward.
+      - name: Bump version from conventional commits
+        id: release
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          RANGE=${LAST_TAG:+$LAST_TAG..HEAD}
+          if git log $RANGE --format='%s%n%b' | grep -qE '^(feat|fix|perf)(\(.+\))?!?:|^[a-z]+(\(.+\))?!:|BREAKING CHANGE'; then
+            PUSHED=$(git rev-parse HEAD)
+            bunx changelogen --release --no-commit --no-tag
+            VERSION=$(jq -r .version package.json)
+            git add package.json CHANGELOG.md
+            if [ -n "$LAST_TAG" ]; then
+              RELEASE=$(git commit-tree "$(git write-tree)" -p "$LAST_TAG^{commit}" -p "$PUSHED" -m "chore(release): v$VERSION")
+              git reset --hard "$RELEASE"
+            else
+              git commit -m "chore(release): v$VERSION"
+            fi
+            git tag -am "v$VERSION" "v$VERSION"
+            echo "released=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No releasable commits since ${LAST_TAG:-start}; skipping bump."
+            echo "released=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build assets
+        run: bun run build
+
+      - name: Publish compiled assets to production branch
+        run: |
+          git checkout -B production
+          printf '{"version":"%s","date":"%s"}\n' "$(jq -r .version package.json)" "$(date -u +%F)" > version.json
+          git add -f version.json public/build
+          git commit -m "build: v$(jq -r .version package.json) [skip ci]"
+          git push -f origin production
+
+      - name: Push version bump and tag to main
+        if: steps.release.outputs.released == 'true'
+        run: |
+          git checkout main
+          git push origin main --follow-tags
+
+      - name: Create GitHub release
+        if: steps.release.outputs.released == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bunx changelogen gh release

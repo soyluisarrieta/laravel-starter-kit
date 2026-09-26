@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,7 +12,6 @@
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
     "types:check": "tsc --noEmit",
-    "release": "bunx changelogen --release && git push --follow-tags",
     "test": "vitest run",
     "test:watch": "vitest",
     "prepare": "husky"

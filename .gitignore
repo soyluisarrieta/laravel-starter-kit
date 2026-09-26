@@ -28,3 +28,4 @@ yarn-error.log
 /.zed
 /_ide_helper.php
 PLAN.md
+/version.json

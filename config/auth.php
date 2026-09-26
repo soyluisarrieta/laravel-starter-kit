@@ -22,6 +22,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Super Admin
+    |--------------------------------------------------------------------------
+    |
+    | The account ProductionSeeder creates on each deploy, with a random
+    | password: the first way in is Google, or a password reset email.
+    |
+    */
+
+    'super_admin_email' => env('AUTH_SUPER_ADMIN_EMAIL'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Authentication Guards
     |--------------------------------------------------------------------------
     |

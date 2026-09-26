@@ -9,22 +9,17 @@ use Spatie\Permission\Models\Role;
 class RoleSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeds. Safe to run again: each deploy does.
      */
     public function run(): void
     {
-        Role::create([
-            'name' => Roles::SUPER_ADMIN->value,
-            'label' => Roles::SUPER_ADMIN->label(),
-            'hex_color' => Roles::SUPER_ADMIN->hexColor(),
-        ])
-            ->givePermissionTo(Roles::SUPER_ADMIN->permissions());
+        foreach (Roles::cases() as $roleEnum) {
+            $role = Role::updateOrCreate(
+                ['name' => $roleEnum->value, 'guard_name' => 'web'],
+                ['label' => $roleEnum->label(), 'hex_color' => $roleEnum->hexColor()],
+            );
 
-        Role::create([
-            'name' => Roles::ADMIN->value,
-            'label' => Roles::ADMIN->label(),
-            'hex_color' => Roles::ADMIN->hexColor(),
-        ])
-            ->givePermissionTo(Roles::ADMIN->permissions());
+            $role->syncPermissions($roleEnum->permissions());
+        }
     }
 }
