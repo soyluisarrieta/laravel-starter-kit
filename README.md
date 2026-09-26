@@ -72,9 +72,9 @@ Si el repositorio fue creado desde esta plantilla, sigue este checklist antes de
 
 - [ ] **Repositorio**
   - [ ] Reemplazar `git remote` con el del nuevo proyecto
+  - [ ] Empezar las versiones del proyecto: `version` en `0.0.0` en `package.json`, `CHANGELOG.md` vacío y sin los tags del starter (`git tag -l | xargs git tag -d`)
   - [ ] Crear primer commit limpio: `git add . && git commit -m "chore: initial commit"`
-  - [ ] Crear primer release: `bun run release`
-  - [ ] `git push -u origin main`
+  - [ ] `git push -u origin main`: cada push a `main` crea su versión y se despliega ([docs/deployment.md](docs/deployment.md))
 
 ### Validación
 
@@ -161,18 +161,7 @@ php artisan test
 
 ## 📝 Releases
 
-El proyecto utiliza `bun run release` para versioning automático:
-
-```bash
-# Patch (1.0.0 → 1.0.1)
-bun run release
-
-# Minor (1.0.0 → 1.1.0)
-bun run release -- --minor
-
-# Major (1.0.0 → 2.0.0)
-bun run release -- --major
-```
+Cada push a `main` es una versión y se despliega solo: GitHub Actions lee los commits del push, sube la versión con changelogen si hay `feat`, `fix` o `perf`, y el servidor la aplica en el siguiente minuto. No hay nada que correr a mano; después de cada versión, `git pull` trae el commit del bot. Ver [docs/deployment.md](docs/deployment.md).
 
 ## 📚 Documentación
 

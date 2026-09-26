@@ -185,7 +185,7 @@ En menos de un minuto, `storage/logs/deploy.log` debe decir `deploying <sha> -> 
 ## Día a día
 
 1. Commits en `main` y push. `deploy` publica `production` y, en el siguiente minuto, el scheduler lo aplica.
-2. Si hubo `feat`, `fix` o `perf` desde la última versión, `main` recibe `chore(release): vX.Y.Z` con el `CHANGELOG.md` y el tag. Haz `git pull` antes del próximo commit.
+2. Si hubo `feat`, `fix` o `perf` desde la última versión, `main` recibe `chore(release): vX.Y.Z` con el `CHANGELOG.md` y el tag. Es un merge del push con la versión anterior: en el graph, cada versión se ve como su propia rama. Haz `git pull` antes del próximo commit.
 3. Revisa el resultado:
 
    ```bash
