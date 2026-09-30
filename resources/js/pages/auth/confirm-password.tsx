@@ -1,18 +1,20 @@
-import { Form, Head } from '@inertiajs/react';
+import { Form, Head, setLayoutProps } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import InputError from '@/components/ui/input-error';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
-import AuthLayout from '@/layouts/auth-layout';
 import { store } from '@/routes/password/confirm';
 
 export default function ConfirmPassword() {
+    setLayoutProps({
+        title: 'Confirma tu contraseña',
+        description:
+            'Esta es un área segura. Por favor confirma tu contraseña para continuar.',
+    });
+
     return (
-        <AuthLayout
-            title="Confirma tu contraseña"
-            description="Esta es un área segura. Por favor confirma tu contraseña para continuar."
-        >
+        <>
             <Head title="Confirmar contraseña" />
 
             <Form {...store.form()} resetOnSuccess={['password']}>
@@ -45,6 +47,6 @@ export default function ConfirmPassword() {
                     </div>
                 )}
             </Form>
-        </AuthLayout>
+        </>
     );
 }

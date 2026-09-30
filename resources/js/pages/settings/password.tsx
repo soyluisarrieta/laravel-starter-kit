@@ -1,5 +1,5 @@
 import { Transition } from '@headlessui/react';
-import { Form, Head } from '@inertiajs/react';
+import { Form, Head, setLayoutProps } from '@inertiajs/react';
 import { useRef } from 'react';
 import PasswordController from '@/actions/App/Http/Controllers/Settings/PasswordController';
 import Heading from '@/components/layout/heading';
@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import InputError from '@/components/ui/input-error';
 import { Label } from '@/components/ui/label';
-import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';
 import { edit } from '@/routes/user-password';
 import type { BreadcrumbItem } from '@/types';
@@ -23,8 +22,12 @@ export default function Password() {
     const passwordInput = useRef<HTMLInputElement>(null);
     const currentPasswordInput = useRef<HTMLInputElement>(null);
 
+    setLayoutProps({
+        breadcrumbs: breadcrumbs,
+    });
+
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <>
             <Head title="Configuración de contraseña" />
 
             <h1 className="sr-only">Configuración de contraseña</h1>
@@ -143,6 +146,6 @@ export default function Password() {
                     </Form>
                 </div>
             </SettingsLayout>
-        </AppLayout>
+        </>
     );
 }

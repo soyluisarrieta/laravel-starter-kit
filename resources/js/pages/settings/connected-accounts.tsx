@@ -1,8 +1,7 @@
-import { Head, Link, router } from '@inertiajs/react';
+import { Head, Link, router, setLayoutProps } from '@inertiajs/react';
 import Heading from '@/components/layout/heading';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';
 import {
     destroy as destroyConnection,
@@ -36,8 +35,12 @@ export default function ConnectedAccounts({
         router.delete(destroyConnection().url, { preserveScroll: true });
     };
 
+    setLayoutProps({
+        breadcrumbs: breadcrumbs,
+    });
+
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <>
             <Head title="Cuentas vinculadas" />
 
             <h1 className="sr-only">Cuentas vinculadas</h1>
@@ -100,6 +103,6 @@ export default function ConnectedAccounts({
                     </div>
                 </div>
             </SettingsLayout>
-        </AppLayout>
+        </>
     );
 }

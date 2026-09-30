@@ -1,7 +1,6 @@
-import { Head, usePage } from '@inertiajs/react';
+import { Head, usePage, setLayoutProps } from '@inertiajs/react';
 import { Badge } from '@/components/ui/badge';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
-import AppLayout from '@/layouts/app-layout';
 import { dashboard } from '@/routes';
 import type { BreadcrumbItem } from '@/types';
 
@@ -21,8 +20,12 @@ export default function Dashboard() {
             ? `${nameParts[0]} ${nameParts[1]}`
             : nameParts[0];
 
+    setLayoutProps({
+        breadcrumbs: breadcrumbs,
+    });
+
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <>
             <Head title="Panel de inicio" />
 
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
@@ -51,6 +54,6 @@ export default function Dashboard() {
                     <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
                 </div>
             </div>
-        </AppLayout>
+        </>
     );
 }

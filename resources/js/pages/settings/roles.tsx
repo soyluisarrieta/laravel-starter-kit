@@ -1,5 +1,5 @@
 import type { PageProps } from '@inertiajs/core';
-import { Head, router, usePage } from '@inertiajs/react';
+import { Head, router, usePage, setLayoutProps } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 import { ConfirmDialog } from '@/components/commons/confirm-dialog';
 import RoleForm from '@/components/features/settings/role-form';
@@ -17,7 +17,6 @@ import {
 import { OTHERS_PERMISSIONS, PERMISSION_GROUPS } from '@/constants/permissions';
 import { useCan } from '@/hooks/use-can';
 import { useDialog } from '@/hooks/use-dialog';
-import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';
 import { destroy, edit as editRoles } from '@/routes/roles';
 import type {
@@ -98,8 +97,12 @@ export default function Roles() {
         });
     };
 
+    setLayoutProps({
+        breadcrumbs: breadcrumbs,
+    });
+
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <>
             <Head title="Roles" />
 
             <SettingsLayout className="max-w-fit">
@@ -168,6 +171,6 @@ export default function Roles() {
                     {...deleteDialog}
                 />
             )}
-        </AppLayout>
+        </>
     );
 }

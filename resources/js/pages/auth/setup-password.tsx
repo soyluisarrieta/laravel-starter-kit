@@ -1,18 +1,20 @@
-import { Form, Head } from '@inertiajs/react';
+import { Form, Head, setLayoutProps } from '@inertiajs/react';
 import SetupPasswordController from '@/actions/App/Http/Controllers/Auth/SetupPasswordController';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import InputError from '@/components/ui/input-error';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
-import AuthLayout from '@/layouts/auth-layout';
 
 export default function SetupPassword() {
+    setLayoutProps({
+        title: 'Configura tu contraseña',
+        description:
+            'Completa tu cuenta creando una contraseña. La necesitarás si quieres iniciar sesión sin Google.',
+    });
+
     return (
-        <AuthLayout
-            title="Configura tu contraseña"
-            description="Completa tu cuenta creando una contraseña. La necesitarás si quieres iniciar sesión sin Google."
-        >
+        <>
             <Head title="Configurar contraseña" />
 
             <Form
@@ -63,6 +65,6 @@ export default function SetupPassword() {
                     </div>
                 )}
             </Form>
-        </AuthLayout>
+        </>
     );
 }

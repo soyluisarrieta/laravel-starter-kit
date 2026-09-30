@@ -1,4 +1,4 @@
-import { Form, Head } from '@inertiajs/react';
+import { Form, Head, setLayoutProps } from '@inertiajs/react';
 import GoogleButton from '@/components/features/auth/google-button';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -7,7 +7,6 @@ import InputError from '@/components/ui/input-error';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import TextLink from '@/components/ui/text-link';
-import AuthLayout from '@/layouts/auth-layout';
 import { register } from '@/routes';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
@@ -25,11 +24,13 @@ export default function Login({
     canResetPassword,
     canRegister,
 }: Props) {
+    setLayoutProps({
+        title: 'Inicia sesión',
+        description: 'Ingresa tu correo y contraseña para acceder',
+    });
+
     return (
-        <AuthLayout
-            title="Inicia sesión"
-            description="Ingresa tu correo y contraseña para acceder"
-        >
+        <>
             <Head title="Iniciar sesión" />
 
             {error && (
@@ -137,6 +138,6 @@ export default function Login({
                     {status}
                 </div>
             )}
-        </AuthLayout>
+        </>
     );
 }

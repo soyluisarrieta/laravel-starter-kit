@@ -1,4 +1,4 @@
-import { Form, Head } from '@inertiajs/react';
+import { Form, Head, setLayoutProps } from '@inertiajs/react';
 import GoogleButton from '@/components/features/auth/google-button';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,16 +6,17 @@ import InputError from '@/components/ui/input-error';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import TextLink from '@/components/ui/text-link';
-import AuthLayout from '@/layouts/auth-layout';
 import { login } from '@/routes';
 import { store } from '@/routes/register';
 
 export default function Register() {
+    setLayoutProps({
+        title: 'Crea una cuenta',
+        description: 'Ingresa tus datos para crear tu cuenta',
+    });
+
     return (
-        <AuthLayout
-            title="Crea una cuenta"
-            description="Ingresa tus datos para crear tu cuenta"
-        >
+        <>
             <Head title="Registro" />
 
             <GoogleButton />
@@ -121,6 +122,6 @@ export default function Register() {
                     </>
                 )}
             </Form>
-        </AuthLayout>
+        </>
     );
 }

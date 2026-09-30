@@ -1,17 +1,19 @@
-import { Form, Head } from '@inertiajs/react';
+import { Form, Head, setLayoutProps } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import TextLink from '@/components/ui/text-link';
-import AuthLayout from '@/layouts/auth-layout';
 import { logout } from '@/routes';
 import { send } from '@/routes/verification';
 
 export default function VerifyEmail({ status }: { status?: string }) {
+    setLayoutProps({
+        title: 'Verificar correo',
+        description:
+            'Por favor verifica tu correo haciendo clic en el enlace que te enviamos.',
+    });
+
     return (
-        <AuthLayout
-            title="Verificar correo"
-            description="Por favor verifica tu correo haciendo clic en el enlace que te enviamos."
-        >
+        <>
             <Head title="Verificación de correo" />
 
             {status === 'verification-link-sent' && (
@@ -38,6 +40,6 @@ export default function VerifyEmail({ status }: { status?: string }) {
                     </>
                 )}
             </Form>
-        </AuthLayout>
+        </>
     );
 }

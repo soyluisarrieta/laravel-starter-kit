@@ -1,5 +1,5 @@
 import type { PageProps } from '@inertiajs/core';
-import { Head, router } from '@inertiajs/react';
+import { Head, router, setLayoutProps } from '@inertiajs/react';
 import { format, formatDistanceToNow } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { ConfirmDialog } from '@/components/commons/confirm-dialog';
@@ -23,7 +23,6 @@ import {
     SheetTitle,
 } from '@/components/ui/sheet';
 import { useDialog } from '@/hooks/use-dialog';
-import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';
 import { cn } from '@/lib/utils';
 import { index as errorsRoute, resolve, destroy } from '@/routes/errors';
@@ -84,8 +83,12 @@ export default function Errors({ errors, queryParams }: ErrorsPageProps) {
         },
     ];
 
+    setLayoutProps({
+        breadcrumbs: breadcrumbs,
+    });
+
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <>
             <Head title="Errores" />
 
             <SettingsLayout className="max-w-6xl">
@@ -276,7 +279,7 @@ export default function Errors({ errors, queryParams }: ErrorsPageProps) {
                     )}
                 </SheetContent>
             </Sheet>
-        </AppLayout>
+        </>
     );
 }
 

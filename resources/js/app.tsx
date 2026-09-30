@@ -3,6 +3,8 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import '../css/app.css';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { initializeTheme } from '@/hooks/use-appearance';
+import AppLayout from '@/layouts/app-layout';
+import AuthLayout from '@/layouts/auth-layout';
 import { queryClient } from '@/lib/query-client';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -18,6 +20,9 @@ router.on('finish', (event) => {
 
 void createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
+    // The shell stays mounted between pages; each page hands it its
+    // breadcrumbs or titles through setLayoutProps.
+    layout: (name) => (name.startsWith('auth/') ? AuthLayout : AppLayout),
     strictMode: true,
     withApp(app) {
         return (

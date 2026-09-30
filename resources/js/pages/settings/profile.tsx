@@ -1,5 +1,12 @@
 import { Transition } from '@headlessui/react';
-import { Form, Head, Link, router, usePage } from '@inertiajs/react';
+import {
+    Form,
+    Head,
+    Link,
+    router,
+    usePage,
+    setLayoutProps,
+} from '@inertiajs/react';
 import { useRef } from 'react';
 import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
 import DeleteUser from '@/components/features/settings/delete-user';
@@ -20,7 +27,6 @@ import { Input } from '@/components/ui/input';
 import InputError from '@/components/ui/input-error';
 import { Label } from '@/components/ui/label';
 import { useInitials } from '@/hooks/use-initials';
-import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';
 import { edit, update } from '@/routes/profile';
 import { send } from '@/routes/verification';
@@ -83,8 +89,12 @@ export default function Profile({
         );
     };
 
+    setLayoutProps({
+        breadcrumbs: breadcrumbs,
+    });
+
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <>
             <Head title="Configuración de perfil" />
 
             <h1 className="sr-only">Configuración de perfil</h1>
@@ -289,6 +299,6 @@ export default function Profile({
 
                 <DeleteUser />
             </SettingsLayout>
-        </AppLayout>
+        </>
     );
 }

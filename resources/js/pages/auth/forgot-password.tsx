@@ -1,20 +1,21 @@
-import { Form, Head } from '@inertiajs/react';
+import { Form, Head, setLayoutProps } from '@inertiajs/react';
 import { LoaderIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import InputError from '@/components/ui/input-error';
 import { Label } from '@/components/ui/label';
 import TextLink from '@/components/ui/text-link';
-import AuthLayout from '@/layouts/auth-layout';
 import { login } from '@/routes';
 import { email } from '@/routes/password';
 
 export default function ForgotPassword({ status }: { status?: string }) {
+    setLayoutProps({
+        title: 'Recuperar contraseña',
+        description: 'Ingresa tu correo para recibir un enlace de recuperación',
+    });
+
     return (
-        <AuthLayout
-            title="Recuperar contraseña"
-            description="Ingresa tu correo para recibir un enlace de recuperación"
-        >
+        <>
             <Head title="Recuperar contraseña" />
 
             {status && (
@@ -64,6 +65,6 @@ export default function ForgotPassword({ status }: { status?: string }) {
                     <TextLink href={login()}>iniciar sesión</TextLink>
                 </div>
             </div>
-        </AuthLayout>
+        </>
     );
 }

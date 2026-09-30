@@ -1,5 +1,5 @@
 import type { PageProps } from '@inertiajs/core';
-import { Head } from '@inertiajs/react';
+import { Head, setLayoutProps } from '@inertiajs/react';
 import { ConfirmDialog } from '@/components/commons/confirm-dialog';
 import { useDataTable } from '@/components/commons/data-table';
 import type {
@@ -21,7 +21,6 @@ import {
 import { USER_PERMISSIONS } from '@/constants/permissions';
 import { useCan } from '@/hooks/use-can';
 import { useDialog } from '@/hooks/use-dialog';
-import AppLayout from '@/layouts/app-layout';
 import { users as usersRoute } from '@/routes';
 import { destroy, destroyMultiple } from '@/routes/users';
 import type { BreadcrumbItem, Role, UserWithRoles } from '@/types';
@@ -57,8 +56,12 @@ export default function Users({ users, roles, queryParams }: UsersProps) {
     const deleteDialog = useDialog('delete-dialog');
     const deleteMultipleDialog = useDialog('delete-multiple-dialog');
 
+    setLayoutProps({
+        breadcrumbs: breadcrumbs,
+    });
+
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <>
             <Head title="Usuarios" />
 
             <main className="main-container px-4 py-10">
@@ -137,6 +140,6 @@ export default function Users({ users, roles, queryParams }: UsersProps) {
                     {...deleteMultipleDialog}
                 />
             )}
-        </AppLayout>
+        </>
     );
 }
