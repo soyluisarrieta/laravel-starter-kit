@@ -1,6 +1,30 @@
 # Changelog
 
 
+## v2.2.0
+
+[compare changes](https://github.com/soyluisarrieta/laravel-starter-kit/compare/v2.1.0...v2.2.0)
+
+### 🚀 Enhancements
+
+- **ui:** Show the app name from VITE_APP_NAME in the logo ([ccd8ae1](https://github.com/soyluisarrieta/laravel-starter-kit/commit/ccd8ae1))
+
+### 💅 Refactors
+
+- **types:** Drop any from the inertia finish handler and debounce hook ([6e4d0d8](https://github.com/soyluisarrieta/laravel-starter-kit/commit/6e4d0d8))
+
+### 📖 Documentation
+
+- **release:** Start projects at 0.1.0 and point to the push-based release ([dfe9ca0](https://github.com/soyluisarrieta/laravel-starter-kit/commit/dfe9ca0))
+
+### 🤖 CI
+
+- Check instead of fixing and install from the frozen lockfile ([9ba5d13](https://github.com/soyluisarrieta/laravel-starter-kit/commit/9ba5d13))
+
+### ❤️ Contributors
+
+- Luis Arrieta <luisarrieta796@gmail.com>
+
 ## v2.1.0
 
 [compare changes](https://github.com/soyluisarrieta/laravel-starter-kit/compare/v2.0.0...v2.1.0)

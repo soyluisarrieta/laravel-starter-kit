@@ -72,7 +72,7 @@ Si el repositorio fue creado desde esta plantilla, sigue este checklist antes de
 
 - [ ] **Repositorio**
   - [ ] Reemplazar `git remote` con el del nuevo proyecto
-  - [ ] Empezar las versiones del proyecto: `version` en `0.0.0` en `package.json`, `CHANGELOG.md` vacío y sin los tags del starter (`git tag -l | xargs git tag -d`)
+  - [ ] Empezar las versiones del proyecto: `version` en `0.1.0` en `package.json`, `CHANGELOG.md` vacío y sin los tags del starter (`git tag -l | xargs git tag -d`)
   - [ ] Crear primer commit limpio: `git add . && git commit -m "chore: initial commit"`
   - [ ] `git push -u origin main`: cada push a `main` crea su versión y se despliega ([docs/deployment.md](docs/deployment.md))
 

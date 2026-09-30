@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-type AnyFunction = (...args: any[]) => any;
+// `never[]` in the parameter position lets any callable satisfy the base
+// constraint via contravariance, without resorting to `any`.
+type UnknownFunction = (...args: never[]) => unknown;
 
 /**
  * Function returned by `useDebouncedFn`
  * Keeps the original parameters but delays execution
  */
-export type DebouncedFunction<T extends AnyFunction> = ((
+export type DebouncedFunction<T extends UnknownFunction> = ((
     ...args: Parameters<T>
 ) => void) & {
     cancel: () => void;
@@ -39,7 +41,7 @@ export function useDebouncedValue<T>(value: T, delay: number): T {
  * - `cancel()` → cancel a pending execution
  * - `flush()` → execute immediately if pending
  */
-export function useDebouncedFn<T extends AnyFunction>(
+export function useDebouncedFn<T extends UnknownFunction>(
     fn: T,
     delay: number = 300,
 ): DebouncedFunction<T> {
