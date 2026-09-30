@@ -5,7 +5,12 @@
 
 ## Pasos
 
-1. **Actualizar versión** en `package.json`: cambiar `"version"` a `"0.1.0"`.
+1. **Reiniciar el versionado**: la app nueva empieza su propia historia, sin la del kit.
+   - En `package.json`, cambiar `"version"` a `"0.1.0"`.
+   - Dejar `CHANGELOG.md` solo con la línea `# Changelog`.
+   - Borrar los tags del kit, si el repo se clonó en vez de crearse desde la plantilla:
+     `git tag -l | xargs -r git tag -d`. Sin esto, el primer push calcularía la versión
+     a partir del último tag del kit.
 
 2. **Limpiar `README.md`**: eliminar el bloque completo entre los comentarios HTML
    `<!-- INICIO: SECCIÓN DE INICIALIZACIÓN -->` y `<!-- FIN: SECCIÓN DE INICIALIZACIÓN -->`,
