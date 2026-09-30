@@ -1,11 +1,11 @@
 import {
+    createExpandedRowModel,
     flexRender,
-    getCoreRowModel,
-    getExpandedRowModel,
-    useReactTable,
+    rowExpandingFeature,
+    tableFeatures,
+    useTable,
 } from '@tanstack/react-table';
-import type { ExpandedState } from '@tanstack/react-table';
-import type { ColumnDef } from '@tanstack/react-table';
+import type { ColumnDef, ExpandedState } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import type { IconType } from '@/components/icons';
 import { ChevronRightIcon, ShieldCheckIcon } from '@/components/icons';
@@ -51,6 +51,11 @@ interface PermissionRow extends BaseRow {
 }
 
 type RowData = GroupRow | PermissionRow;
+
+const features = tableFeatures({
+    rowExpandingFeature,
+    expandedRowModel: createExpandedRowModel(),
+});
 
 interface RoleTableProps {
     permissionGroups: GroupedPermission[];
@@ -129,54 +134,59 @@ export default function RoleTable({
     };
 
     // Columns for roles
-    const roleColumns: ColumnDef<RowData>[] = roles.map((role) => ({
-        id: role.id.toString(),
-        header: () => (
-            <Badge
-                onClick={() => onEditRole(role)}
-                className="cursor-pointer border-none hover:bg-muted"
-                variant="outline"
-                style={{
-                    backgroundColor: role.hex_color + '1A',
-                    color: role.hex_color,
-                }}
-            >
-                <ShieldCheckIcon />
-                {role.label}
-            </Badge>
-        ),
-        cell: ({ row: { original } }) => {
-            const permission = original.isGroup ? null : original.permission;
-            if (!permission) return null;
+    const roleColumns: ColumnDef<typeof features, RowData>[] = roles.map(
+        (role) => ({
+            id: role.id.toString(),
+            header: () => (
+                <Badge
+                    onClick={() => onEditRole(role)}
+                    className="cursor-pointer border-none hover:bg-muted"
+                    variant="outline"
+                    style={{
+                        backgroundColor: role.hex_color + '1A',
+                        color: role.hex_color,
+                    }}
+                >
+                    <ShieldCheckIcon />
+                    {role.label}
+                </Badge>
+            ),
+            cell: ({ row }) => {
+                const original = row.original;
+                const permission = original.isGroup
+                    ? null
+                    : original.permission;
+                if (!permission) return null;
 
-            const value = original.roleValues[role.id];
-            const isLoading = loadingPermissions.has(
-                `${role.id}-${permission.id}`,
-            );
+                const value = original.roleValues[role.id];
+                const isLoading = loadingPermissions.has(
+                    `${role.id}-${permission.id}`,
+                );
 
-            return (
-                <div className="flex items-center justify-center">
-                    {isLoading ? (
-                        <Spinner className="ml-2" />
-                    ) : (
-                        <Checkbox
-                            checked={value}
-                            onCheckedChange={(checked) =>
-                                handlePermissionChange(
-                                    permission,
-                                    role,
-                                    checked as boolean,
-                                )
-                            }
-                        />
-                    )}
-                </div>
-            );
-        },
-    }));
+                return (
+                    <div className="flex items-center justify-center">
+                        {isLoading ? (
+                            <Spinner className="ml-2" />
+                        ) : (
+                            <Checkbox
+                                checked={value}
+                                onCheckedChange={(checked) =>
+                                    handlePermissionChange(
+                                        permission,
+                                        role,
+                                        checked as boolean,
+                                    )
+                                }
+                            />
+                        )}
+                    </div>
+                );
+            },
+        }),
+    );
 
     // Columns definition
-    const columns: ColumnDef<RowData>[] = [
+    const columns: ColumnDef<typeof features, RowData>[] = [
         {
             id: 'actions',
             header: 'Acciones',
@@ -209,13 +219,12 @@ export default function RoleTable({
         ...roleColumns,
     ];
 
-    const table = useReactTable({
+    const table = useTable({
+        features,
         data: data,
         columns,
         state: { expanded },
         onExpandedChange: setExpanded,
-        getCoreRowModel: getCoreRowModel(),
-        getExpandedRowModel: getExpandedRowModel(),
         getSubRows: (row) => (row as GroupRow).subRows,
     });
 
@@ -257,7 +266,7 @@ export default function RoleTable({
                             )}
                             onClick={() => isGroup && row.toggleExpanded()}
                         >
-                            {row.getVisibleCells().map((cell) => (
+                            {row.getAllCells().map((cell) => (
                                 <TableCell
                                     key={cell.id}
                                     className={cn('py-3', isGroup && 'p-0')}
