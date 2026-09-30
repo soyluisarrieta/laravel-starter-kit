@@ -27,6 +27,11 @@ const baseNavItems: NavItem[] = [
         icon: null,
     },
     {
+        title: 'Seguridad',
+        href: '/ajustes/seguridad',
+        icon: null,
+    },
+    {
         title: 'Cuentas vinculadas',
         href: editConnectedAccounts(),
         icon: null,

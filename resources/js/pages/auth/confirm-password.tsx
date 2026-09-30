@@ -1,4 +1,5 @@
 import { Form, Head, setLayoutProps } from '@inertiajs/react';
+import PasskeyVerify from '@/components/features/security/passkey-verify';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import InputError from '@/components/ui/input-error';
@@ -16,6 +17,21 @@ export default function ConfirmPassword() {
     return (
         <>
             <Head title="Confirmar contraseña" />
+
+            <PasskeyVerify
+                routes={{
+                    options: '/passkeys/confirm/options',
+                    submit: '/passkeys/confirm',
+                }}
+                label="Confirmar con llave de acceso"
+                loadingLabel="Confirmando…"
+            />
+
+            <div className="flex w-full items-center gap-2">
+                <div className="h-px w-full bg-muted" />
+                <span className="text-xs text-muted-foreground">O</span>
+                <div className="h-px w-full bg-muted" />
+            </div>
 
             <Form {...store.form()} resetOnSuccess={['password']}>
                 {({ processing, errors }) => (

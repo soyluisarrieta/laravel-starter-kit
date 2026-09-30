@@ -1,5 +1,6 @@
 import { Form, Head, setLayoutProps } from '@inertiajs/react';
 import GoogleButton from '@/components/features/auth/google-button';
+import PasskeyVerify from '@/components/features/security/passkey-verify';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
@@ -43,6 +44,8 @@ export default function Login({
             )}
 
             <GoogleButton />
+
+            <PasskeyVerify />
 
             <div className="flex w-full items-center gap-2">
                 <div className="h-px w-full bg-muted" />

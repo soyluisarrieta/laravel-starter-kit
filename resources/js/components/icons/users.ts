@@ -7,4 +7,5 @@ export {
     HiOutlineUser as UserIcon,
     HiOutlineUsers as UsersIcon,
     HiOutlineUserCircle as UserCogIcon,
+    HiOutlineKey as KeyIcon,
 } from 'react-icons/hi2';

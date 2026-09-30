@@ -6,6 +6,8 @@ use App\Http\Controllers\Settings\ConnectedAccountController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\RoleController;
+use App\Http\Controllers\Settings\SecurityController;
+use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -20,6 +22,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('settings/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('ajustes/constrasena', [PasswordController::class, 'edit'])->name('user-password.edit');
+
+    Route::get('ajustes/seguridad', [SecurityController::class, 'edit'])
+        ->middleware(RequirePassword::class)
+        ->name('security.edit');
 
     Route::put('settings/password', [PasswordController::class, 'update'])
         ->middleware('throttle:6,1')
@@ -66,3 +72,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('roles.destroy');
     });
 });
+
+// Lets password managers and browsers find where passkeys are set up.
+Route::get('.well-known/passkey-endpoints', function () {
+    return response()->json([
+        'enroll' => route('security.edit'),
+        'manage' => route('security.edit'),
+    ]);
+})->name('well-known.passkeys');
