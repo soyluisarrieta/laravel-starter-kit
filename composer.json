@@ -20,6 +20,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.7",
+        "larastan/larastan": "^3.9",
         "fakerphp/faker": "^1.23",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.24",
@@ -76,9 +77,13 @@
             "bun run build",
             "@test"
         ],
+        "types:check": [
+            "phpstan analyse --memory-limit=2G"
+        ],
         "test": [
             "@php artisan config:clear --ansi",
             "@lint:check",
+            "@types:check",
             "@php artisan test"
         ],
         "post-autoload-dump": [

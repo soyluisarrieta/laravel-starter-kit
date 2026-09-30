@@ -39,6 +39,9 @@ jobs:
       - name: Run Pint
         run: composer lint:check
 
+      - name: Run PHPStan
+        run: composer types:check
+
       - name: Check Frontend Format
         run: bun run format:check
 

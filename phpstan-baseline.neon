@@ -1,0 +1,331 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method App\\Actions\\Fortify\\CreateNewUser\:\:userRules\(\) should return array\<string, array\<int, array\<mixed\>\|Illuminate\\Contracts\\Validation\\Rule\|string\>\> but returns array\<string, array\<int, array\<mixed\>\|Illuminate\\Contracts\\Validation\\Rule\|string\>\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Actions/Fortify/CreateNewUser.php
+
+		-
+			message: '#^Method App\\Enums\\Roles\:\:permissions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Enums/Roles.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\ClientErrorController\:\:store\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/ClientErrorController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\:\:search\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Settings/ClientErrorController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Settings\\ClientErrorController\:\:applyDataTable\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Http/Controllers/Settings/ClientErrorController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Settings\\ClientErrorController\:\:applyDataTable\(\) return type with generic class Illuminate\\Pagination\\LengthAwarePaginator does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Http/Controllers/Settings/ClientErrorController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Settings\\ClientErrorController\:\:destroy\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Settings/ClientErrorController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Settings\\ClientErrorController\:\:index\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Settings/ClientErrorController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Settings\\ClientErrorController\:\:resolve\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Settings/ClientErrorController.php
+
+		-
+			message: '#^Offset ''perPage'' might not exist on array\{sortBy\?\: string, sortOrder\?\: string, perPage\?\: int, searchEnabled\?\: bool\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 2
+			path: app/Http/Controllers/Settings/ClientErrorController.php
+
+		-
+			message: '#^Offset ''searchEnabled'' might not exist on array\{sortBy\?\: string, sortOrder\?\: string, perPage\?\: int, searchEnabled\?\: bool\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: app/Http/Controllers/Settings/ClientErrorController.php
+
+		-
+			message: '#^Offset ''sortBy'' might not exist on array\{sortBy\?\: string, sortOrder\?\: string, perPage\?\: int, searchEnabled\?\: bool\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: app/Http/Controllers/Settings/ClientErrorController.php
+
+		-
+			message: '#^Offset ''sortOrder'' might not exist on array\{sortBy\?\: string, sortOrder\?\: string, perPage\?\: int, searchEnabled\?\: bool\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 2
+			path: app/Http/Controllers/Settings/ClientErrorController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Settings\\ConnectedAccountController\:\:link\(\) should return Illuminate\\Http\\RedirectResponse but returns Symfony\\Component\\HttpFoundation\\RedirectResponse\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Http/Controllers/Settings/ConnectedAccountController.php
+
+		-
+			message: '#^Cannot call method getClientOriginalExtension\(\) on string\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Settings/ProfileController.php
+
+		-
+			message: '#^Cannot call method storeAs\(\) on string\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Settings/ProfileController.php
+
+		-
+			message: '#^Access to an undefined property Spatie\\Permission\\Models\\Permission\:\:\$label\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/Settings/RoleController.php
+
+		-
+			message: '#^Access to an undefined property Spatie\\Permission\\Models\\Role\:\:\$label\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/Settings/RoleController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Settings\\RoleController\:\:destroy\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Settings/RoleController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Settings\\RoleController\:\:index\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Settings/RoleController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Settings\\RoleController\:\:store\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Settings/RoleController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Settings\\RoleController\:\:update\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Settings/RoleController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Settings\\RoleController\:\:updatePermission\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Settings/RoleController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\SocialiteController\:\:redirectToProvider\(\) should return Illuminate\\Http\\RedirectResponse but returns Symfony\\Component\\HttpFoundation\\RedirectResponse\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Http/Controllers/SocialiteController.php
+
+		-
+			message: '#^Offset 0 on non\-empty\-list\<string\> on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Http/Controllers/SocialiteController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\:\:search\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\UserController\:\:applyDataTable\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\UserController\:\:applyDataTable\(\) return type with generic class Illuminate\\Pagination\\LengthAwarePaginator does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\UserController\:\:destroy\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\UserController\:\:destroyMultiple\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\UserController\:\:index\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\UserController\:\:store\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\UserController\:\:update\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Offset ''perPage'' might not exist on array\{sortBy\?\: string, sortOrder\?\: string, perPage\?\: int, searchEnabled\?\: bool\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 2
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Offset ''searchEnabled'' might not exist on array\{sortBy\?\: string, sortOrder\?\: string, perPage\?\: int, searchEnabled\?\: bool\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Offset ''sortBy'' might not exist on array\{sortBy\?\: string, sortOrder\?\: string, perPage\?\: int, searchEnabled\?\: bool\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Offset ''sortOrder'' might not exist on array\{sortBy\?\: string, sortOrder\?\: string, perPage\?\: int, searchEnabled\?\: bool\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 2
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Method App\\Http\\Requests\\ClientErrorRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Requests/ClientErrorRequest.php
+
+		-
+			message: '#^Method App\\Http\\Requests\\DataTableRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Requests/DataTableRequest.php
+
+		-
+			message: '#^Method App\\Http\\Requests\\Settings\\ProfileUpdateRequest\:\:userRules\(\) should return array\<string, array\<int, array\<mixed\>\|Illuminate\\Contracts\\Validation\\Rule\|string\>\> but returns array\<string, array\<int, array\<mixed\>\|Illuminate\\Contracts\\Validation\\Rule\|string\>\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Http/Requests/Settings/ProfileUpdateRequest.php
+
+		-
+			message: '#^Access to an undefined property \(object\|string\)\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Requests/Settings/RoleRequest.php
+
+		-
+			message: '#^Access to an undefined property \(object\|string\)\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Requests/User/UserRequest.php
+
+		-
+			message: '#^Method App\\Http\\Requests\\User\\UserRequest\:\:userRules\(\) should return array\<string, array\<int, array\<mixed\>\|Illuminate\\Contracts\\Validation\\Rule\|string\>\> but returns array\<string, array\<int, array\<mixed\>\|Illuminate\\Contracts\\Validation\\Rule\|string\>\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Http/Requests/User/UserRequest.php
+
+		-
+			message: '#^Method App\\Models\\ClientError\:\:scopeFrequent\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ClientError.php
+
+		-
+			message: '#^Method App\\Models\\ClientError\:\:scopeFrequent\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ClientError.php
+
+		-
+			message: '#^Method App\\Models\\ClientError\:\:scopeUnresolved\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ClientError.php
+
+		-
+			message: '#^Method App\\Models\\ClientError\:\:scopeUnresolved\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ClientError.php
+
+		-
+			message: '#^Method App\\Models\\User\:\:scopeSearch\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Method App\\Models\\User\:\:scopeSearch\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$value with type mixed is not subtype of native type string\|null\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^PHPDoc tag @return with type void is incompatible with native type Illuminate\\Database\\Eloquent\\Builder\.$#'
+			identifier: return.phpDocType
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Method App\\Notifications\\FrequentClientErrorNotification\:\:via\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Notifications/FrequentClientErrorNotification.php
+
+		-
+			message: '#^Method App\\Notifications\\NewClientErrorNotification\:\:via\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Notifications/NewClientErrorNotification.php
+
+		-
+			message: '#^Parameter \#1 \$string of function rtrim expects string, bool\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: config/filesystems.php
+
+		-
+			message: '#^Using nullsafe method call on non\-nullable type Illuminate\\Console\\Command\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 3
+			path: database/seeders/AdminUserSeeder.php
