@@ -14,7 +14,7 @@ description: >
 - **Routing**: Laravel Wayfinder (auto-generates TypeScript routes)
 - **State**: Zustand stores
 - **UI**: shadcn/ui + Tailwind CSS 4
-- **Tooling**: Bun, Vite, TypeScript strict, ESLint, Prettier, Pint
+- **Tooling**: Bun, Vite+ (Vite, Vitest, Oxlint, Oxfmt), TypeScript strict, Pint, Larastan
 - **Testing**: PHPUnit
 
 ## Project Structure
@@ -101,8 +101,8 @@ composer dev
 
 # Linting
 composer lint        # PHP (Pint)
-bun run lint         # JS/TS (ESLint)
-bun run format       # Prettier
+bun run lint         # JS/TS (Oxlint via vp lint)
+bun run format       # Oxfmt via vp fmt
 
 # Testing
 composer test
