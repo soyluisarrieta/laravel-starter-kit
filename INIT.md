@@ -16,5 +16,5 @@
 4. Informar al usuario que la inicialización está completa y que debe:
    - Actualizar `README.md` con el nombre y descripción de su proyecto
    - Hacer el primer commit: `git add . && git commit -m "chore: initial commit"`
-   - Ejecutar `bun run release` para generar la primera versión (`v0.1.0`)
-   - Hacer push: `git push -u origin main`
+   - Revisar el checklist de inicialización del `README.md` (tema, base de datos, SSO, mail)
+   - Hacer push: `git push -u origin main` (cada push a `main` crea su versión y se despliega, ver `docs/deployment.md`)
