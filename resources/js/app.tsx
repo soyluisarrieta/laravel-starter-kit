@@ -26,8 +26,8 @@ createInertiaApp({
         const root = createRoot(el);
 
         // Clear data-table cache after mutations so stale pages don't flash old data
-        router.on('success', (event) => {
-            if ((event as any).detail?.visit?.method !== 'get') {
+        router.on('finish', (event) => {
+            if (event.detail.visit.method !== 'get') {
                 queryClient.removeQueries({
                     queryKey: ['data-table'],
                 });
