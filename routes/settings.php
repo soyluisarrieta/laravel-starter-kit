@@ -21,7 +21,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('settings/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('ajustes/constrasena', [PasswordController::class, 'edit'])->name('user-password.edit');
+    Route::get('ajustes/contrasena', [PasswordController::class, 'edit'])->name('user-password.edit');
 
     Route::get('ajustes/seguridad', [SecurityController::class, 'edit'])
         ->middleware(RequirePassword::class)
