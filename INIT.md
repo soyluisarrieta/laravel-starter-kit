@@ -11,6 +11,9 @@
    - Borrar los tags del kit, si el repo se clonó en vez de crearse desde la plantilla:
      `git tag -l | xargs -r git tag -d`. Sin esto, el primer push calcularía la versión
      a partir del último tag del kit.
+   - Ejecutar `git config pull.ff false`. Así cada pull que baje el `chore(release)` del bot
+     crea un merge, y el gráfico de Git separa las versiones por colores. Vive en
+     `.git/config`, por eso no viene con la plantilla.
 
 2. **Limpiar `README.md`**: eliminar el bloque completo entre los comentarios HTML
    `<!-- INICIO: SECCIÓN DE INICIALIZACIÓN -->` y `<!-- FIN: SECCIÓN DE INICIALIZACIÓN -->`,
