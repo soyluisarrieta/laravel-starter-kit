@@ -1,6 +1,42 @@
 # Changelog
 
 
+## v2.3.0
+
+[compare changes](https://github.com/soyluisarrieta/laravel-starter-kit/compare/v2.2.0...v2.3.0)
+
+### 🚀 Enhancements
+
+- **ui:** Keep the app shell mounted across pages with persistent layouts ([d00ffd3](https://github.com/soyluisarrieta/laravel-starter-kit/commit/d00ffd3))
+- **auth:** Sign in with passkeys from the security settings ([0189320](https://github.com/soyluisarrieta/laravel-starter-kit/commit/0189320))
+
+### 🩹 Fixes
+
+- **settings:** Correct the spelling of the password settings url ([0215089](https://github.com/soyluisarrieta/laravel-starter-kit/commit/0215089))
+
+### 📖 Documentation
+
+- **init:** Reset the changelog and tags when starting a new app ([db91de5](https://github.com/soyluisarrieta/laravel-starter-kit/commit/db91de5))
+- **init:** Set up merge pulls so new apps group releases in the git graph ([fff0462](https://github.com/soyluisarrieta/laravel-starter-kit/commit/fff0462))
+
+### 🏡 Chore
+
+- **config:** Adopt the laravel 13 cache and session serialization defaults ([87586cd](https://github.com/soyluisarrieta/laravel-starter-kit/commit/87586cd))
+- **ci:** Add larastan at level 7 with a baseline and type model relations ([0dfa3e8](https://github.com/soyluisarrieta/laravel-starter-kit/commit/0dfa3e8))
+- **tooling:** Replace eslint, prettier and vitest config with vite-plus ([eac2a27](https://github.com/soyluisarrieta/laravel-starter-kit/commit/eac2a27))
+
+### 🎨 Styles
+
+- Upgrade pint to 1.32 and apply its new rules ([9794639](https://github.com/soyluisarrieta/laravel-starter-kit/commit/9794639))
+
+### 🤖 CI
+
+- **deploy:** Let the push sync create the release merge, as in wablar ([8eee367](https://github.com/soyluisarrieta/laravel-starter-kit/commit/8eee367))
+
+### ❤️ Contributors
+
+- Luis Arrieta <luisarrieta796@gmail.com>
+
 ## v2.2.0
 
 [compare changes](https://github.com/soyluisarrieta/laravel-starter-kit/compare/v2.1.0...v2.2.0)
